@@ -70,112 +70,112 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 }
 
 Widget pageOne({required VoidCallback onNext}) {
-  return Scaffold(
-    body: Stack(
-      children: [
-        Positioned(
-          top: 223,
-          left: 35,
-          width: 335,
-          child: Image.asset(
-            'assets/images/icons/NIKE.png',
-            height: 116,
+  return Expanded(
+    child: Stack(
+        children: [
+          Positioned(
+            top: 223,
+            left: 35,
             width: 335,
+            child: Image.asset(
+              'assets/images/icons/NIKE.png',
+              height: 116,
+              width: 335,
+            ),
           ),
-        ),
-        Positioned(
-            top: 146,
-            left: 47,
-            child: Container(
-              height: 16,
-              width: 16,
-              decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle
-              ),
-            )),
-        Positioned(
-            top: 444,
-            left: 20,
-            child: Container(
-              height: 16,
-              width: 16,
-              decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle
-              ),
-            )),
-        Positioned(
-            top: 392,
-            left: 342,
-            child: Container(
-              height: 16,
-              width: 16,
-              decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle
-              ),
-            )),
-        Container(
-          margin: EdgeInsets.only(top: 133),
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 375,
-                height: 321,
-                child: Image.asset(
-                  'assets/images/preview/Sketches_prev.png',
-                  width: 324,
-                  height: 181,
-                  fit: BoxFit.contain,
+          Positioned(
+              top: 146,
+              left: 47,
+              child: Container(
+                height: 16,
+                width: 16,
+                decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    shape: BoxShape.circle
                 ),
-              ),
-              SizedBox(height: 75),
-              Text(
-                'Start Journey \nWith Nike',
-                style: TextStyle(
-                  fontFamily: 'Airbnb Cereal',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 40,
-                  color: AppColors.text,
+              )),
+          Positioned(
+              top: 444,
+              left: 20,
+              child: Container(
+                height: 16,
+                width: 16,
+                decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    shape: BoxShape.circle
                 ),
-              ),
-              SizedBox(height: 15),
-              Text(
-                'Smart, Gorgeous & Fashionable Collection',
-                style: TextStyle(
-                  fontFamily: 'Airbnb Cereal',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: AppColors.subText,
+              )),
+          Positioned(
+              top: 392,
+              left: 342,
+              child: Container(
+                height: 16,
+                width: 16,
+                decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    shape: BoxShape.circle
                 ),
-              ),
-              SizedBox(height: 50),
-              Row(
-                children: [
-                  Spacer(),
-                  ElevatedButton(
-                    onPressed: onNext,
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 32,
-                      ),
-                      backgroundColor: AppColors.primary,
-                    ),
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
+              )),
+          Container(
+            margin: EdgeInsets.only(top: 133),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 375,
+                  height: 321,
+                  child: Image.asset(
+                    'assets/images/preview/Sketches_prev.png',
+                    width: 324,
+                    height: 181,
+                    fit: BoxFit.contain,
                   ),
-                ],
-              ),
-            ],
+                ),
+                SizedBox(height: 75),
+                Text(
+                  'Start Journey \nWith Nike',
+                  style: TextStyle(
+                    fontFamily: 'Airbnb Cereal',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 40,
+                    color: AppColors.text,
+                  ),
+                ),
+                SizedBox(height: 15),
+                Text(
+                  'Smart, Gorgeous & Fashionable Collection',
+                  style: TextStyle(
+                    fontFamily: 'Airbnb Cereal',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColors.subText,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Row(
+                  children: [
+                    Spacer(),
+                    ElevatedButton(
+                      onPressed: onNext,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 16,
+                          horizontal: 32,
+                        ),
+                        backgroundColor: AppColors.primary,
+                      ),
+                      child: Text(
+                        'Get Started',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
     ),
   );
 }

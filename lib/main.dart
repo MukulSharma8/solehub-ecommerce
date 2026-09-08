@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:solehub/screens/auth/forgot_pass_screen.dart';
 import 'package:solehub/screens/auth/login_screen.dart';
 import 'package:solehub/screens/auth/register_screen.dart';
+import 'package:solehub/screens/home/home_screen.dart';
 import 'package:solehub/screens/onboarding/onboarding_screen.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RegisterScreen(),
+      home: HomeScreen(),
     );
   }
 }

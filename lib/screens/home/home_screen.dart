@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
 import 'package:solehub/widgets/bottom_nav_bar.dart';
+import 'package:solehub/widgets/categories_section.dart';
 import 'package:solehub/widgets/home_header.dart';
+import 'package:solehub/widgets/new_arrival_banner.dart';
 import 'package:solehub/widgets/popular_shoes_card.dart';
 import 'package:solehub/widgets/popular_shoes_section.dart';
 import 'package:solehub/widgets/search_bar.dart';
@@ -28,8 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 HomeHeader(),
                 SizedBox(height: 20,),
                 Searchbar(),
-                SizedBox(height: 20,),
+                SizedBox(height: 30,),
+                CategoriesSection(),
+                SizedBox(height: 30,),
                 PopularShoesSection(),
+                SizedBox(height: 20,),
+                NewArrivalBanner()
               ],
             ),
           ),

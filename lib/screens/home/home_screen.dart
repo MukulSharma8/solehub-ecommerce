@@ -3,6 +3,7 @@ import 'package:solehub/core/constants/app_colors.dart';
 import 'package:solehub/widgets/bottom_nav_bar.dart';
 import 'package:solehub/widgets/categories_section.dart';
 import 'package:solehub/widgets/home_header.dart';
+import 'package:solehub/widgets/menu_drawer.dart';
 import 'package:solehub/widgets/new_arrival_banner.dart';
 import 'package:solehub/widgets/popular_shoes_card.dart';
 import 'package:solehub/widgets/popular_shoes_section.dart';
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      drawer: const MenuDrawer(),
 
       body: SafeArea(
         child: SingleChildScrollView(
@@ -35,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 30,),
                 PopularShoesSection(),
                 SizedBox(height: 20,),
-                NewArrivalBanner()
+                NewArrivalBanner(),
               ],
             ),
           ),

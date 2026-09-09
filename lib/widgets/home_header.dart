@@ -8,7 +8,13 @@ class HomeHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.apps, size: 40,)),
+        Builder(
+          builder: (context) {
+            return IconButton(onPressed: (){
+              Scaffold.of(context).openDrawer();
+            }, icon: Icon(Icons.menu, size: 40,));
+          }
+        ),
         Spacer(),
         Column(
           children: [

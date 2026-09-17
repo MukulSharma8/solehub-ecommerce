@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/models/products.dart';
 import 'package:solehub/screens/product_details/product_details_screen.dart';
 
 class PopularShoesCard extends StatelessWidget {
-  final String img;
-  const PopularShoesCard({super.key, required this.img});
+  final Products product;
+  const PopularShoesCard({super.key,required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,10 @@ class PopularShoesCard extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                   height: 107,
-                  child: Image.asset(img, fit: BoxFit.contain,)),
+                  child: Image.asset(product.image, fit: BoxFit.contain,)),
               Text('BEST SELLER', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.primary,),),
-              Text('NIKE JORDAN', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.text, height: 2)),
-              Text('493.00', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 14, color: AppColors.text, height: 2)),
+              Text(product.name, style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.text, height: 2)),
+              Text('${product.price}', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 14, color: AppColors.text, height: 2)),
             ],
           ),
             Positioned(

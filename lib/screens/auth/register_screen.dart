@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
 
+import '../../services/user_service.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
-
 class _RegisterScreenState extends State<RegisterScreen> {
-  
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   bool hidePass = true;
   @override
   Widget build(BuildContext context) {
@@ -59,6 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 10,
                       ),
                       TextFormField(
+                        controller: nameController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: AppColors.white,
@@ -77,6 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10,
                         ),
                         TextFormField(
+                          controller: emailController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: AppColors.white,
@@ -95,6 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10,
                         ),
                         TextFormField(
+                          controller: passwordController,
                           obscureText: hidePass,
                           decoration: InputDecoration(
                             filled: true,
@@ -124,7 +130,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(
                         height: 54,
                         width: 335,
-                        child: ElevatedButton(onPressed: (){},
+                        child: ElevatedButton(onPressed: () async {
+                          if (nameController.text.isEmpty ||
+                              emailController.text.isEmpty ||
+                              passwordController.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Please fill all fields"),
+                              ),
+                            );
+                            return;
+                          }
+                          String? error = await UserService().register(
+                            nameController.text,
+                            emailController.text,
+                            passwordController.text,
+                          );
+                          if (error == null) {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              '/login',
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(error),
+                              ),
+                            );
+                          }
+                        },
                           child: Text('Sign Up', style: TextStyle(color: Colors.white, fontSize: 18),),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary

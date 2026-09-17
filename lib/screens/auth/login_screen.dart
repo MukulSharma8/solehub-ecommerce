@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import '../../services/user_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,7 +10,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   bool hidePass = true;
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 10,
                             ),
                             TextFormField(
+                              controller: emailController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: AppColors.white,
@@ -88,6 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 10,
                             ),
                             TextFormField(
+                              controller: passwordController,
                               obscureText: true,
                               decoration: InputDecoration(
                                 filled: true,
@@ -119,8 +123,34 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(
                               height: 54,
                               width: 335,
-                              child: ElevatedButton(onPressed: (){},
-                                child: Text('Sign Up', style: TextStyle(color: Colors.white, fontSize: 18),),
+                              child: ElevatedButton(onPressed: () async {
+                                if (emailController.text.isEmpty ||
+                                    passwordController.text.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Please fill all fields"),
+                                    ),
+                                  );
+                                  return;
+                                }
+                                bool success = await UserService().login(
+                                  emailController.text,
+                                  passwordController.text,
+                                );
+                                if (success) {
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    '/home',
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Invalid email or password"),
+                                    ),
+                                  );
+                                }
+                              },
+                                child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 18),),
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: AppColors.primary
                                 ),

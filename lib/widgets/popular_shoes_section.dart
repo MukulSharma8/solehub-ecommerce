@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/models/products.dart';
 import 'package:solehub/widgets/popular_shoes_card.dart';
 
-class PopularShoesSection extends StatelessWidget {
+import '../services/product_service.dart';
+class PopularShoesSection extends StatefulWidget {
   const PopularShoesSection({super.key});
 
+  @override
+  State<PopularShoesSection> createState() => _PopularShoesSectionState();
+}
+
+class _PopularShoesSectionState extends State<PopularShoesSection> {
+  final ProductService productService = ProductService();
+
+  List<Products> products = [];
+  @override
+  void initState() {
+    super.initState();
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async {
+    final data = await productService.getProducts();
+
+    setState(() {
+      products = data;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,10 +46,11 @@ class PopularShoesSection extends StatelessWidget {
           height: 220,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 6,itemBuilder: (context, index){
+              itemCount: products.length, itemBuilder: (context, index){
+                final product = products[index];
             return Padding(
               padding: const EdgeInsets.only(right: 18.0),
-              child: PopularShoesCard(img: 'assets/images/preview/Jordan.png'),
+              child: PopularShoesCard(product: products[index],),
             );
           }),
         ),

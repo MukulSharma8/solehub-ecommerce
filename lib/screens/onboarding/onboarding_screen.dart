@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/screens/auth/login_screen.dart';
+import 'package:solehub/screens/auth/register_screen.dart';
+import 'package:solehub/screens/home/home_screen.dart';
+import 'package:solehub/core/routes/app_routes.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -30,7 +34,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context){
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Stack(
@@ -59,7 +63,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   );
                 },
               ),
-              pageThree(),
+              pageThree(
+                onNext: () { Navigator.pushReplacementNamed(context, '/register');}
+              ),
             ],
           ),
           Positioned(bottom: 90, left: 20, right: 0, child: pageIndicator()),
@@ -300,7 +306,7 @@ Widget pageTwo({required VoidCallback onNext}) {
   );
 }
 
-Widget pageThree() {
+Widget pageThree({required VoidCallback onNext}){
   return Scaffold(
     body: Stack(
       children: [
@@ -388,7 +394,7 @@ Widget pageThree() {
                 children: [
                   Spacer(),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: onNext,
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
                         vertical: 16,

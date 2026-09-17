@@ -22,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       drawer: const MenuDrawer(),
-
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

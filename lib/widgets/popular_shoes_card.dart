@@ -3,6 +3,9 @@ import 'package:solehub/core/constants/app_colors.dart';
 import 'package:solehub/models/products.dart';
 import 'package:solehub/screens/product_details/product_details_screen.dart';
 
+import '../core/constants/user_constants.dart';
+import '../services/wishlist_service.dart';
+
 class PopularShoesCard extends StatelessWidget {
   final Products product;
   const PopularShoesCard({super.key,required this.product});
@@ -38,17 +41,16 @@ class PopularShoesCard extends StatelessWidget {
             ],
           ),
             Positioned(
-              bottom: 0,
+              bottom: 5,
                 right: 0,
-                child: Container(
-              height: 35,
-              width: 35,
-              decoration: BoxDecoration(
-                  color: AppColors.primary,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(15), bottomRight: Radius.circular(15))
-              ),
-              child: IconButton(onPressed: (){}, icon: Icon(Icons.add), color: AppColors.white,),
-            ))
+                child: Center(
+                  child: IconButton(onPressed: () async {
+                    await WishlistService().addToWishlist(
+                      UserConstants.userId,
+                      product.id,
+                    );
+                  }, icon: Icon(Icons.favorite_border_outlined), color: AppColors.subText,),
+                ))
         ]
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/screens/wishlist/wishlist_screen.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -50,6 +51,11 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   // Home
                   Expanded(
                     child: _navItem(
+                      onPressed: (){
+                        setState(() {
+                          selectedIndex =0;
+                        });
+                      },
                       index: 0,
                       icon: Icons.home_outlined,
                       activeIcon: Icons.home,
@@ -59,6 +65,12 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   // Wishlist
                   Expanded(
                     child: _navItem(
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> WishlistScreen()));
+                        setState(() {
+                          selectedIndex = 1;
+                        });
+                      },
                       index: 1,
                       icon: Icons.favorite_border,
                       activeIcon: Icons.favorite,
@@ -71,6 +83,11 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   // Notification
                   Expanded(
                     child: _navItem(
+                      onPressed: (){
+                        setState(() {
+                          selectedIndex=3;
+                        });
+                      },
                       index: 3,
                       icon: Icons.notifications_none_outlined,
                       activeIcon: Icons.notifications,
@@ -80,6 +97,11 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   // Profile
                   Expanded(
                     child: _navItem(
+                      onPressed:(){
+                        setState(() {
+                          selectedIndex=4;
+                        });
+                      },
                       index: 4,
                       icon: Icons.person_outline,
                       activeIcon: Icons.person,
@@ -134,15 +156,12 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     required int index,
     required IconData icon,
     required IconData activeIcon,
+    required VoidCallback onPressed,
   }) {
     final bool isSelected = selectedIndex == index;
 
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
+      onTap: onPressed,
       child: Center(
         child: Icon(
           isSelected ? activeIcon : icon,

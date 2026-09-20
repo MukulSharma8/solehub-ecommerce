@@ -76,11 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(50)
                                 ),
-                                  suffixIcon: IconButton(onPressed: (){
-                                    setState(() {
-                                      hidePass = !hidePass;
-                                    });
-                                  }, icon: Icon(hidePass ? Icons.visibility_off : Icons.visibility,))
+
                               ),
                             ),
                             SizedBox(
@@ -101,7 +97,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(50)
                                 ),
+                                  suffixIcon: IconButton(onPressed: (){
+                                    setState(() {
+                                      hidePass = !hidePass;
+                                    });
+                                  }, icon: Icon(hidePass ? Icons.visibility_off : Icons.visibility,))
                               ),
+
                             ),
                             SizedBox(height: 5,),
                             Row(

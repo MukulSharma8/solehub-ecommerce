@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/models/products.dart';
+import 'package:solehub/core/routes/app_routes.dart';
+import '../../core/constants/user_constants.dart';
+import '../../services/cart_service.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({super.key});
+  final Products product;
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  int quantity = 1;
   int selectedGalleryIndex = 0;
   int selectedSizeIndex = 2; // "40" is selected by default in the design
 
@@ -35,7 +41,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   children: [
                     _DetailsCard(
                       gallery: gallery,
-                      sizes: sizes,
+                      sizes: widget.product.sizes,
                       selectedGalleryIndex: selectedGalleryIndex,
                       selectedSizeIndex: selectedSizeIndex,
                       onGalleryTap: (i) =>
@@ -51,7 +57,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               bottom: 0,
               left: 0,
               right: 0,
-              child: BottomBar()
+              child: BottomBar(
+                product: widget.product,
+                selectedSize: widget.product.sizes[selectedSizeIndex],
+                quantity: quantity,
+
+              )
             ),
       ]
         ),
@@ -72,7 +83,7 @@ class _TopBar extends StatelessWidget {
         children: [
           _RoundIconButton(
             icon: Icons.arrow_back_ios_new_rounded,
-            onTap: () => Navigator.of(context).maybePop(),
+            onTap: () => Navigator.pop(context),
           ),
           const Text(
             "Men's Shoes",
@@ -85,7 +96,9 @@ class _TopBar extends StatelessWidget {
           ),
           _RoundIconButton(
             icon: Icons.shopping_bag_outlined,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/cart');
+            },
           ),
         ],
       ),
@@ -148,7 +161,7 @@ class _DetailsCard extends StatelessWidget {
   });
 
   final List<String> gallery;
-  final List<String> sizes;
+  final List<int> sizes;
   final int selectedGalleryIndex;
   final int selectedSizeIndex;
   final ValueChanged<int> onGalleryTap;
@@ -295,7 +308,7 @@ class _DetailsCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Text(
-                      sizes[index],
+                      sizes[index].toString(),
                       style: TextStyle(
                         fontFamily: 'Airbnb Cereal',
                         fontWeight: FontWeight.w500,
@@ -316,7 +329,16 @@ class _DetailsCard extends StatelessWidget {
   }
 }
 class BottomBar extends StatelessWidget {
-  const BottomBar({super.key});
+  final Products product;
+  final int selectedSize;
+  final int quantity;
+
+  const BottomBar({
+    super.key,
+    required this.product,
+    required this.selectedSize,
+    required this.quantity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -356,7 +378,19 @@ class BottomBar extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+          onPressed: () async {
+            await CartService().addToCart(
+              UserConstants.userId,
+              product.id,
+              selectedSize,
+              quantity
+            );
+          ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+          content: Text("Added to cart"),
+          ),
+          );
+          },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF5B9EE1),
               padding: const EdgeInsets.symmetric(

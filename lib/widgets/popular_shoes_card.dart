@@ -16,7 +16,7 @@ class PopularShoesCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ProductDetailScreen())
+            MaterialPageRoute(builder: (context) => ProductDetailScreen(product: product,))
         );},
       child: Container(
         width: 160,

@@ -22,7 +22,7 @@ class WishlistCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ProductDetailScreen(),
+            builder: (context) => ProductDetailScreen(product: product,),
           ),
         );
       },

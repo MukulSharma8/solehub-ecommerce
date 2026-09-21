@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             TextFormField(
                               controller: passwordController,
-                              obscureText: true,
+                              obscureText: hidePass,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: AppColors.white,

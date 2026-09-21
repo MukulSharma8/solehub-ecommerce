@@ -66,9 +66,12 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   Expanded(
                     child: _navItem(
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> WishlistScreen()));
                         setState(() {
                           selectedIndex = 1;
+                        });
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> WishlistScreen()));
+                        setState(() {
+                          selectedIndex =0;
                         });
                       },
                       index: 1,

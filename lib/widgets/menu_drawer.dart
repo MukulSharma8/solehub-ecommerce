@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/screens/auth/register_screen.dart';
+import 'package:solehub/screens/wishlist/wishlist_screen.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -50,21 +52,27 @@ class MenuDrawer extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.home_filled, color: AppColors.subText,),
                   title: const Text('home Page', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.white ),),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
                 ),
         
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.shopping_cart, color: AppColors.subText,),
                   title: const Text('My Cart', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.white ),),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/cart');
+                  },
                 ),
         
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.favorite_border_outlined, color: AppColors.subText,),
                   title: const Text('Favorite', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.white ),),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> WishlistScreen()));
+                  },
                 ),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
@@ -93,6 +101,9 @@ class MenuDrawer extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.logout, color: AppColors.subText,),
                   title: const Text('Sign Out', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.white ),),
+                  onTap: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> RegisterScreen()));
+                  },
                 )
                   ],
                 ),

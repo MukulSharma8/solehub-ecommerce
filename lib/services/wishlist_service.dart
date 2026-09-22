@@ -5,7 +5,7 @@ class WishlistService {
   Future<List<WishlistItem>> getWishlist(String userId) async {
     final response = await http.get(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/$userId/wishlist',
+        'https://solehub-backend.onrender.com/api/users/$userId/wishlist',
       ),
     );
     if (response.statusCode == 200) {
@@ -28,7 +28,7 @@ class WishlistService {
 
     final response = await http.post(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/$userId/wishlist',
+        'https://solehub-backend.onrender.com/api/users/$userId/wishlist',
       ),
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ class WishlistService {
       ) async {
     final response = await http.delete(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/$userId/wishlist/$productId',
+        'https://solehub-backend.onrender.com/api/users/$userId/wishlist/$productId',
       ),
     );
 

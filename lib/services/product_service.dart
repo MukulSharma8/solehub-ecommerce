@@ -7,7 +7,7 @@ class ProductService {
   Future<List<Products>> getProducts() async {
 
     final response = await http.get(
-      Uri.parse('http://10.0.2.2:9000/api/products'),
+      Uri.parse('https://solehub-backend.onrender.com/api/products'),
     );
 
     if (response.statusCode == 200) {

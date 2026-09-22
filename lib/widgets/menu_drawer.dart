@@ -61,7 +61,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
               SizedBox(
                 height: 10,
               ),
-              Text(user?.name ?? 'Usomer', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 24, color: AppColors.white ),),
+              Text(user?.name ?? 'User', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 24, color: AppColors.white ),),
 
               SizedBox(
                 height: 30,

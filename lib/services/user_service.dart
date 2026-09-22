@@ -11,7 +11,7 @@ class UserService {
       ) async {
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:9000/api/users'),
+      Uri.parse('https://10.0.2.2:9000/api/users'),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -30,13 +30,14 @@ class UserService {
 
     return data['message'];
   }
+
   Future<User?> login(
       String email,
       String password,
       ) async {
     final response = await http.post(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/login',
+        'https://solehub-backend.onrender.com/api/users/login',
       ),
       headers: {
         'Content-Type': 'application/json',
@@ -47,9 +48,11 @@ class UserService {
       }),
     );
 
+    print("STATUS: ${response.statusCode}");
+    print("RESPONSE: ${response.body}");
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-
       return User.fromJson(data['user']);
     }
 
@@ -58,7 +61,7 @@ class UserService {
   Future<User> getUser(String userId) async {
     final response = await http.get(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/$userId',
+        'https://solehub-backend.onrender.com/api/users/$userId',
       ),
     );
 

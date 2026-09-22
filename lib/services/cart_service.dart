@@ -8,7 +8,7 @@ class CartService {
 
     final response = await http.get(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/$userId/cart',
+        'https://solehub-backend.onrender.com/api/users/$userId/cart',
       ),
     );
 
@@ -32,6 +32,7 @@ class CartService {
 
       throw Exception("Failed to load cart");
     }
+
   }
 
   Future<void> addToCart(
@@ -43,7 +44,7 @@ class CartService {
 
     final response = await http.post(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/$userId/cart',
+        'https://solehub-backend.onrender.com/api/users/$userId/cart',
       ),
       headers: {
         'Content-Type': 'application/json',
@@ -59,6 +60,7 @@ class CartService {
       print("Added to cart");
     } else {
       print("Failed to add to cart");
+
     }
   }
   Future<void> removeFromCart(
@@ -67,7 +69,7 @@ class CartService {
       ) async {
     final response = await http.delete(
       Uri.parse(
-        'http://10.0.2.2:9000/api/users/$userId/cart/$cartItemId',
+        'https://solehub-backend.onrender.com/api/users/$userId/cart/$cartItemId',
       ),
     );
 

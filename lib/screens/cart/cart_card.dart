@@ -37,9 +37,9 @@ class CartCard extends StatelessWidget {
                 color: AppColors.background,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Image.asset(
+              child: Image.network(
                 cartItem.product.image,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               ),
             ),
 
@@ -92,8 +92,8 @@ class CartCard extends StatelessWidget {
             IconButton(
               onPressed: onDelete,
               icon: const Icon(
-                Icons.delete_outline,
-                color: AppColors.subText,
+                Icons.delete,
+                color: AppColors.primary,
               ),
             ),
           ],

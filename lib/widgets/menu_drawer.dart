@@ -1,11 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
 import 'package:solehub/screens/auth/register_screen.dart';
+import 'package:solehub/screens/profile/profile_screen.dart';
 import 'package:solehub/screens/wishlist/wishlist_screen.dart';
+import '../../core/constants/user_constants.dart';
+import '../../models/user.dart';
+import '../../services/user_service.dart';
 
-class MenuDrawer extends StatelessWidget {
+class MenuDrawer extends StatefulWidget {
   const MenuDrawer({super.key});
 
+  @override
+  State<MenuDrawer> createState() => _MenuDrawerState();
+}
+
+class _MenuDrawerState extends State<MenuDrawer> {
+  User? user;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUser();
+  }
+
+  Future<void> loadUser() async {
+    User data = await UserService().getUser(
+      UserConstants.userId,
+    );
+
+    setState(() {
+      user = data;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -32,10 +58,13 @@ class MenuDrawer extends StatelessWidget {
                 height: 20,
               ),
               Text('Hey', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 20, color: AppColors.subText ),),
-              Text('Somya Sharma', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 24, color: AppColors.white ),),
-        
               SizedBox(
-                height: 40,
+                height: 10,
+              ),
+              Text(user?.name ?? 'Usomer', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 24, color: AppColors.white ),),
+
+              SizedBox(
+                height: 30,
               ),
               Expanded(
                 child: Column(
@@ -45,9 +74,11 @@ class MenuDrawer extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.person, color: AppColors.subText,),
                   title: const Text('Profile', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.white ),),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileScreen()));
+                  },
                 ),
-        
+
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.home_filled, color: AppColors.subText,),
@@ -56,7 +87,7 @@ class MenuDrawer extends StatelessWidget {
                     Navigator.pushNamed(context, '/home');
                   },
                 ),
-        
+
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.shopping_cart, color: AppColors.subText,),
@@ -65,7 +96,7 @@ class MenuDrawer extends StatelessWidget {
                     Navigator.pushNamed(context, '/cart');
                   },
                 ),
-        
+
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: const Icon(Icons.favorite_border_outlined, color: AppColors.subText,),

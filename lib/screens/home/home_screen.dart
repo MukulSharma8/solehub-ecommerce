@@ -5,7 +5,6 @@ import 'package:solehub/widgets/categories_section.dart';
 import 'package:solehub/widgets/home_header.dart';
 import 'package:solehub/widgets/menu_drawer.dart';
 import 'package:solehub/widgets/new_arrival_banner.dart';
-import 'package:solehub/widgets/popular_shoes_card.dart';
 import 'package:solehub/widgets/popular_shoes_section.dart';
 import 'package:solehub/widgets/search_bar.dart';
 class HomeScreen extends StatefulWidget {

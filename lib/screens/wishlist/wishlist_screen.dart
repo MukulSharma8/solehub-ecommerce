@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solehub/core/constants/app_colors.dart';
 import 'package:solehub/core/constants/user_constants.dart';
 import 'package:solehub/models/wishlist_item.dart';
 import 'package:solehub/services/wishlist_service.dart';
@@ -36,13 +37,14 @@ class _WishlistScreenState extends State<WishlistScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: IconButton(
           padding: EdgeInsets.only(left: 20),
             onPressed: (){
           Navigator.pop(context);
         }, icon: Icon(Icons.keyboard_return)),
-        title: Text('Wishlist'),
+        title: Text('Wishlist', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, color: AppColors.text),),
         centerTitle: true,
         actions: [
           Padding(

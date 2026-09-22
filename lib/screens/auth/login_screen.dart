@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import '../../core/constants/user_constants.dart';
+import '../../models/user.dart';
 import '../../services/user_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -135,11 +137,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   );
                                   return;
                                 }
-                                bool success = await UserService().login(
+                                User? user = await UserService().login(
                                   emailController.text,
                                   passwordController.text,
                                 );
-                                if (success) {
+
+                                if (user != null) {
+                                  UserConstants.userId = user.id;
                                   Navigator.pushReplacementNamed(
                                     context,
                                     '/home',

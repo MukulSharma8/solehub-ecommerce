@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../models/user.dart';
 
 class UserService {
 
@@ -29,13 +30,14 @@ class UserService {
 
     return data['message'];
   }
-  Future<bool> login(
+  Future<User?> login(
       String email,
       String password,
       ) async {
-
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:9000/api/users/login'),
+      Uri.parse(
+        'http://10.0.2.2:9000/api/users/login',
+      ),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -46,9 +48,26 @@ class UserService {
     );
 
     if (response.statusCode == 200) {
-      return true;
+      final data = jsonDecode(response.body);
+
+      return User.fromJson(data['user']);
+    }
+
+    return null;
+  }
+  Future<User> getUser(String userId) async {
+    final response = await http.get(
+      Uri.parse(
+        'http://10.0.2.2:9000/api/users/$userId',
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      return User.fromJson(data);
     } else {
-      return false;
+      throw Exception("Failed to load user");
     }
   }
 }

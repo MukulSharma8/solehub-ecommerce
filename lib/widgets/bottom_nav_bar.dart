@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/screens/profile/profile_screen.dart';
 import 'package:solehub/screens/wishlist/wishlist_screen.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -100,9 +101,13 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   // Profile
                   Expanded(
                     child: _navItem(
-                      onPressed:(){
+                      onPressed:() async{
                         setState(() {
                           selectedIndex=4;
+                        });
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileScreen()));
+                        setState(() {
+                          selectedIndex=0;
                         });
                       },
                       index: 4,

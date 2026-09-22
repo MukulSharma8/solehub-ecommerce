@@ -104,7 +104,7 @@ class WishlistCard extends StatelessWidget {
                   icon: const Icon(
                     Icons.favorite,
                   ),
-                  color: AppColors.primary,
+                  color: Colors.red,
                 ),
               ),
             ),

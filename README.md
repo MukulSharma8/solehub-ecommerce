@@ -34,6 +34,42 @@ A new Flutter based shoe e-commerce app
 #Profile
 <img width="220"  alt="profileScreen" src="https://github.com/user-attachments/assets/03d07624-e39c-47b7-8350-4c0ebe3015b9" />
 
+#About the Project
+
+SoleHub is a full-stack e-commerce application focused on sneakers. The frontend is developed using Flutter and Dart, while the backend is built with Node.js and Express.js.
+The application communicates with the backend through REST APIs, receives data in JSON format, and converts the API responses into Dart models for use throughout the application.
+
+#Features
+🔐 User Registration & Login
+🏠 Modern Home Screen
+🔎 Product Details
+❤️ Add/Remove Products from Wishlist
+🛒 Add/Remove Products from Cart
+👤 User Profile
+📱 Responsive UI for different screen sizes
+🌐 REST API Integration
+🔄 Dynamic Product Data
+⚡ Loading & API response handling
+
+#Tech Stack
+Frontend
+Flutter
+Dart
+Material Design
+HTTP package
+JSON Serialization/Deserialization
+Backend
+Node.js
+Express.js
+REST API
+JSON
+Tools
+Android Studio
+VS Code
+Git
+GitHub
+Postman
+
 
 
 

@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                      crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 108, left: 44, right: 44),
+                        margin: EdgeInsets.only(top: 108),
                         child: Column(
                           children: [
                             Text(
@@ -195,17 +195,17 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 50),
-              child: Text.rich(
-                TextSpan(
-                    text: "Don't have an account?",
-                    style: TextStyle(fontSize: 15, fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, color: AppColors.subText),
-                    children: [
-                      TextSpan(
-                          text: ' Sign Up For Free',
-                          style: TextStyle(fontSize: 15, fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, color: AppColors.text)
-                      )
-                    ]
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account?",
+                    style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, color: AppColors.subText, fontSize: 15),),
+                  GestureDetector(
+                    onTap: (){Navigator.pushReplacementNamed(context, '/register');},
+                    child: Text(' Sign Up for free',
+                        style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, color: AppColors.text, fontSize: 15)),
+                  )
+                ],
               ),
             )
           ],

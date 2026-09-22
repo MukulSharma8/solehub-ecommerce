@@ -11,7 +11,7 @@ class UserService {
       ) async {
 
     final response = await http.post(
-      Uri.parse('https://10.0.2.2:9000/api/users'),
+      Uri.parse('https://solehub-backend.onrender.com/api/users'),
       headers: {
         'Content-Type': 'application/json',
       },

@@ -26,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 Container(
                   width: 247,
-                  margin: EdgeInsets.only(top: 98, left: 44, right: 44),
+                  margin: EdgeInsets.only(top: 98),
                   child: Column(
                     children: [
                       Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solehub/core/constants/app_colors.dart';
+import 'package:solehub/screens/cart/cart_screen.dart';
 import 'package:solehub/screens/profile/profile_screen.dart';
 import 'package:solehub/screens/wishlist/wishlist_screen.dart';
 
@@ -127,9 +128,13 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             right: 0,
             child: Center(
               child: GestureDetector(
-                onTap: () {
+                onTap: () async{
                   setState(() {
                     selectedIndex = 2;
+                  });
+                  await Navigator.push(context, MaterialPageRoute(builder: (context)=> CartScreen()));
+                  setState(() {
+                    selectedIndex = 0;
                   });
                 },
                 child: Container(
@@ -146,7 +151,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                       ),
                     ],
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.shopping_bag_outlined,
                     color: Colors.white,
                     size: 36,

@@ -64,82 +64,128 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
               pageThree(
-                onNext: () { Navigator.pushReplacementNamed(context, '/register');}
+                onNext: () {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/register',
+                  );
+                },
               ),
             ],
           ),
-          Positioned(bottom: 90, left: 20, right: 0, child: pageIndicator()),
+
+          // Indicator
+          Positioned(
+            bottom: 50,
+            left: 20,
+            child: pageIndicator(),
+          ),
+
+          // Button
+          Positioned(
+            bottom: 30,
+            right: 20,
+            child: ElevatedButton(
+              onPressed: () {
+                if (currentPage < 2) {
+                  pageController.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                } else {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/register',
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 32,
+                ),
+                backgroundColor: AppColors.primary,
+              ),
+              child: Text(
+                currentPage == 0 ? 'Get Started' : 'Next',
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
         ],
-      ),
+      )
     );
   }
 }
 
 Widget pageOne({required VoidCallback onNext}) {
-  return Expanded(
-    child: Stack(
-        children: [
-          Positioned(
-            top: 223,
-            left: 35,
+  return Stack(
+      children: [
+        Positioned(
+          top: 223,
+          left: 35,
+          width: 335,
+          child: Image.asset(
+            'assets/images/icons/NIKE.png',
+            height: 116,
             width: 335,
-            child: Image.asset(
-              'assets/images/icons/NIKE.png',
-              height: 116,
-              width: 335,
-            ),
           ),
-          Positioned(
-              top: 146,
-              left: 47,
-              child: Container(
-                height: 16,
-                width: 16,
-                decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    shape: BoxShape.circle
+        ),
+        Positioned(
+            top: 146,
+            left: 47,
+            child: Container(
+              height: 16,
+              width: 16,
+              decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle
+              ),
+            )),
+        Positioned(
+            top: 444,
+            left: 20,
+            child: Container(
+              height: 16,
+              width: 16,
+              decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle
+              ),
+            )),
+        Positioned(
+            top: 392,
+            left: 342,
+            child: Container(
+              height: 16,
+              width: 16,
+              decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle
+              ),
+            )),
+        Container(
+          margin: EdgeInsets.only(top: 100),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 375,
+                height: 321,
+                child: Image.asset(
+                  'assets/images/preview/Sketches_prev.png',
+                  width: 324,
+                  height: 181,
+                  fit: BoxFit.contain,
                 ),
-              )),
-          Positioned(
-              top: 444,
-              left: 20,
-              child: Container(
-                height: 16,
-                width: 16,
-                decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    shape: BoxShape.circle
-                ),
-              )),
-          Positioned(
-              top: 392,
-              left: 342,
-              child: Container(
-                height: 16,
-                width: 16,
-                decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    shape: BoxShape.circle
-                ),
-              )),
-          Container(
-            margin: EdgeInsets.only(top: 133),
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 375,
-                  height: 321,
-                  child: Image.asset(
-                    'assets/images/preview/Sketches_prev.png',
-                    width: 324,
-                    height: 181,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(height: 75),
-                Text(
+              ),
+              SizedBox(height: 50),
+              Expanded(
+                child: Text(
                   'Start Journey \nWith Nike',
                   style: TextStyle(
                     fontFamily: 'Airbnb Cereal',
@@ -148,8 +194,10 @@ Widget pageOne({required VoidCallback onNext}) {
                     color: AppColors.text,
                   ),
                 ),
-                SizedBox(height: 15),
-                Text(
+              ),
+              // SizedBox(height: 15),
+              Expanded(
+                child: Text(
                   'Smart, Gorgeous & Fashionable Collection',
                   style: TextStyle(
                     fontFamily: 'Airbnb Cereal',
@@ -158,31 +206,13 @@ Widget pageOne({required VoidCallback onNext}) {
                     color: AppColors.subText,
                   ),
                 ),
-                SizedBox(height: 50),
-                Row(
-                  children: [
-                    Spacer(),
-                    ElevatedButton(
-                      onPressed: onNext,
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 16,
-                          horizontal: 32,
-                        ),
-                        backgroundColor: AppColors.primary,
-                      ),
-                      child: Text(
-                        'Get Started',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              ),
+              // SizedBox(height: 50),
+
+            ],
           ),
-        ],
-    ),
+        ),
+      ],
   );
 }
 
@@ -234,8 +264,8 @@ Widget pageTwo({required VoidCallback onNext}) {
               ),
             )),
         Container(
-          margin: EdgeInsets.only(top: 133),
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.only(top: 100),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -249,46 +279,31 @@ Widget pageTwo({required VoidCallback onNext}) {
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 75),
-              Text(
-                'Follow Latest \nStyle Shoes',
-                style: TextStyle(
-                  fontFamily: 'Airbnb Cereal',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 40,
-                  color: AppColors.text,
-                ),
-              ),
-              SizedBox(height: 15),
-              Text(
-                'There Are Many Beautiful And Attractive Plants To Your Room ',
-                style: TextStyle(
-                  fontFamily: 'Airbnb Cereal',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: AppColors.subText,
-                ),
-              ),
               SizedBox(height: 50),
-              Row(
-                children: [
-                  Spacer(),
-                  ElevatedButton(
-                    onPressed: onNext,
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 32,
-                      ),
-                      backgroundColor: Color(0XFF5B9EE1),
-                    ),
-                    child: Text(
-                      'Next',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
+              Expanded(
+                child: Text(
+                  'Follow Latest \nStyle Shoes',
+                  style: TextStyle(
+                    fontFamily: 'Airbnb Cereal',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 40,
+                    color: AppColors.text,
                   ),
-                ],
+                ),
               ),
+              // SizedBox(height: 15),
+              Expanded(
+                child: Text(
+                  'There Are Many Beautiful And Attractive Plants To Your Room ',
+                  style: TextStyle(
+                    fontFamily: 'Airbnb Cereal',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColors.subText,
+                  ),
+                ),
+              ),
+              // SizedBox(height: 50),
             ],
           ),
         ),
@@ -354,8 +369,8 @@ Widget pageThree({required VoidCallback onNext}){
               ),
             )),
         Container(
-          margin: EdgeInsets.only(top: 133),
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.only(top: 100),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -369,45 +384,29 @@ Widget pageThree({required VoidCallback onNext}){
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 75),
-              Text(
-                'Summer Shoes \nNike 2026',
-                style: TextStyle(
-                  fontFamily: 'Airbnb Cereal',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 40,
-                  color: AppColors.text,
-                ),
-              ),
-              SizedBox(height: 15),
-              Text(
-                'Amet Minim Lit Nodeseru Saku \nNandu sit Alique Dolor',
-                style: TextStyle(
-                  fontFamily: 'Airbnb Cereal',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: AppColors.subText,
-                ),
-              ),
               SizedBox(height: 50),
-              Row(
-                children: [
-                  Spacer(),
-                  ElevatedButton(
-                    onPressed: onNext,
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 32,
-                      ),
-                      backgroundColor: AppColors.primary,
-                    ),
-                    child: Text(
-                      'Next',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
+              Expanded(
+                child: Text(
+                  'Summer Shoes \nNike 2026',
+                  style: TextStyle(
+                    fontFamily: 'Airbnb Cereal',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 40,
+                    color: AppColors.text,
                   ),
-                ],
+                ),
+              ),
+              // SizedBox(height: 15),
+              Expanded(
+                child: Text(
+                  'Amet Minim Lit Nodeseru Saku \nNandu sit Alique Dolor',
+                  style: TextStyle(
+                    fontFamily: 'Airbnb Cereal',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColors.subText,
+                  ),
+                ),
               ),
             ],
           ),

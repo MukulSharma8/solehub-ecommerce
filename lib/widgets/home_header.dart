@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solehub/screens/cart/cart_screen.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -28,7 +29,9 @@ class HomeHeader extends StatelessWidget {
           ],
         ),
         Spacer(),
-        IconButton(onPressed: (){}, icon: Icon(Icons.shopping_bag_outlined, size: 40,))
+        IconButton(onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> CartScreen()));
+        }, icon: Icon(Icons.shopping_bag_outlined, size: 40,))
       ],
     );
   }

@@ -21,7 +21,6 @@ class PopularShoesCard extends StatelessWidget {
       child: Container(
         width: 160,
         height: 220,
-        padding: EdgeInsets.only(top: 12, left: 12),
         decoration: BoxDecoration(
             color: AppColors.white,
           borderRadius: BorderRadius.circular(15)
@@ -34,10 +33,23 @@ class PopularShoesCard extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                   height: 107,
-                  child: Image.asset(product.image, fit: BoxFit.contain,)),
-              Text('BEST SELLER', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.primary,),),
-              Text(product.name, style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.text, height: 2)),
-              Text('${product.price}', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 14, color: AppColors.text, height: 2)),
+                  child: Image.network(product.image, fit: BoxFit.cover
+                    ,)),
+
+              Padding(
+                padding: EdgeInsets.only(top: 12, left: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('BEST SELLER', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.primary,),),
+                    Text(product.name,
+                        maxLines:1,
+                        style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.text, height: 2)),
+                    Text('\$${product.price}', style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, fontSize: 14, color: AppColors.text, height: 2)),
+                  ],
+                ),
+              ),
+
             ],
           ),
             Positioned(

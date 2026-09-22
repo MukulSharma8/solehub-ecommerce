@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(fontSize: 15, fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, color: AppColors.subText),
                     children: [
                       TextSpan(
-                          text: 'Sign Up For Free',
+                          text: ' Sign Up For Free',
                           style: TextStyle(fontSize: 15, fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, color: AppColors.text)
                       )
                     ]

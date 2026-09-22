@@ -195,7 +195,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, color: AppColors.subText, fontSize: 15),),
                           GestureDetector(
                             onTap: (){Navigator.pushReplacementNamed(context, '/login');},
-                            child: Text('Sign In',
+                            child: Text(' Sign In',
                                 style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, color: AppColors.text, fontSize: 15)),
                           )
                         ],

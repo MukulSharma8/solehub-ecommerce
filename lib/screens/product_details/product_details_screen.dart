@@ -35,12 +35,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           children:[ Column(
             children: [
               _TopBar(),
-              _HeroImage(),
+              _HeroImage(image: widget.product.image,),
               Expanded(
                 child: Column(
                   children: [
                     _DetailsCard(
-                      gallery: gallery,
+                      name: widget.product.name,
+                      price: widget.product.price,
+                      description: widget.product.description,
+                      gallery: widget.product.gallery,
                       sizes: widget.product.sizes,
                       selectedGalleryIndex: selectedGalleryIndex,
                       selectedSizeIndex: selectedSizeIndex,
@@ -59,9 +62,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               right: 0,
               child: BottomBar(
                 product: widget.product,
+                price: widget.product.price,
                 selectedSize: widget.product.sizes[selectedSizeIndex],
                 quantity: quantity,
-
               )
             ),
       ]
@@ -131,15 +134,18 @@ class _RoundIconButton extends StatelessWidget {
 }
 
 class _HeroImage extends StatelessWidget {
-  const _HeroImage();
+  final String image;
+  const _HeroImage({required this.image});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 280,
-      child: Image.asset(
-        'assets/images/preview/Ellipse.png',
-        fit: BoxFit.contain,
+      child: Image.network(
+        image,
+        height: double.infinity,
+        width: double.infinity,
+        fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) => const Icon(
           Icons.sports_basketball_outlined,
           size: 100,
@@ -152,6 +158,9 @@ class _HeroImage extends StatelessWidget {
 
 class _DetailsCard extends StatelessWidget {
   const _DetailsCard({
+    required this.name,
+    required this.description,
+    required this.price,
     required this.gallery,
     required this.sizes,
     required this.selectedGalleryIndex,
@@ -160,6 +169,9 @@ class _DetailsCard extends StatelessWidget {
     required this.onSizeTap,
   });
 
+  final String name;
+  final int price;
+  final String description;
   final List<String> gallery;
   final List<int> sizes;
   final int selectedGalleryIndex;
@@ -192,8 +204,8 @@ class _DetailsCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 6),
-            const Text(
-              'Nike Air Jordan',
+            Text(
+              name,
               style: TextStyle(
                 fontFamily: 'Airbnb Cereal',
                 fontWeight: FontWeight.w500,
@@ -202,8 +214,8 @@ class _DetailsCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              '\$967.800',
+            Text(
+              '\$${price}',
               style: TextStyle(
                 fontFamily: 'Airbnb Cereal',
                 fontWeight: FontWeight.w500,
@@ -213,8 +225,7 @@ class _DetailsCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Air Jordan is an American brand of basketball shoes '
-                  'athletic, casual, and style clothing produced by Nike....',
+              description,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -329,6 +340,7 @@ class _DetailsCard extends StatelessWidget {
   }
 }
 class BottomBar extends StatelessWidget {
+  final int price;
   final Products product;
   final int selectedSize;
   final int quantity;
@@ -338,6 +350,7 @@ class BottomBar extends StatelessWidget {
     required this.product,
     required this.selectedSize,
     required this.quantity,
+    required this.price,
   });
 
   @override
@@ -356,7 +369,7 @@ class BottomBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Price',
+                  '\$${price}',
                   style: TextStyle(
                     fontFamily: 'Airbnb Cereal',
                     fontWeight: FontWeight.w400,

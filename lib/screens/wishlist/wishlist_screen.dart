@@ -37,30 +37,33 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
+        leading: IconButton(
+          padding: EdgeInsets.only(left: 20),
+            onPressed: (){
           Navigator.pop(context);
         }, icon: Icon(Icons.keyboard_return)),
-        title: Row(
-          children: [
-            Text('Wishlist'),
-            Spacer(),
-            Icon(Icons.favorite_border)
-          ],
-        )
+        title: Text('Wishlist'),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border,)),
+          )
+        ],
 
       ),
 
       body: GridView.builder(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
 
         itemCount: wishlist.length,
 
         gridDelegate:
         const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 160 / 220,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          childAspectRatio: 170 / 220,
         ),
 
         itemBuilder: (context, index) {

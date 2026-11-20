@@ -6,8 +6,8 @@ SoleHub provides a seamless shopping experience with user authentication, produc
 📁 Project Structure
 
 solehub/
-│
-├── backend/              # Node.js & Express.js REST API
+|
+|-- backend/             
 │   ├── src/
 │   ├── package.json
 │   └── ...

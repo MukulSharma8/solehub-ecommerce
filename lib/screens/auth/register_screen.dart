@@ -200,18 +200,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           )
                         ],
                       ),
-                      // Text.rich(
-                      //   TextSpan(
-                      //     text: "Already have an account?",
-                      //     style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w400, color: AppColors.subText, fontSize: 15),
-                      //     children: [
-                      //       TextSpan(
-                      //         text: 'Sign In',
-                      //         style: TextStyle(fontFamily: 'Airbnb Cereal', fontWeight: FontWeight.w500, color: AppColors.text, fontSize: 15)
-                      //       )
-                      //     ]
-                      //   ),
-                      // )
+
                     ],
                   ),
                 )

@@ -1,6 +1,26 @@
 # solehub
 
-A new Flutter based shoe e-commerce app
+A full-stack sneaker e-commerce application built with Flutter, Dart, Node.js, and Express.js.
+SoleHub provides a seamless shopping experience with user authentication, product browsing, wishlist management, and cart functionality.
+
+📁 Project Structure
+
+solehub/
+│
+├── backend/              # Node.js & Express.js REST API
+│   ├── src/
+│   ├── package.json
+│   └── ...
+│
+├── android/              # Android platform files
+├── ios/                  # iOS platform files
+├── assets/               # Flutter assets
+├── lib/                  # Flutter application source code
+├── test/                 # Flutter tests
+├── pubspec.yaml          # Flutter dependencies
+│
+├── README.md
+└── .gitignore
 
 #Screenshots
 
